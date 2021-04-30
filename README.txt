@@ -1,36 +1,32 @@
-Mod/Modpack Creatures
-=====================
+Chicken for Creatures MOB-Engine
+================================
 Copyright (c) 2015-2016 BlockMen <blockmen2015@gmail.com>
 
-Version: 2.3.1
+Version: 2.3
 
 
-A Mod(pack) for Minetest that provides a MOB-Engine and adds several creatures to the game.
-Currently included: Ghosts, Zombies, Sheep, Chicken and Oerrki.
+Adds chicken to Minetest (requires Creatures MOB-Engine).
+Chicken spawn on dirt and grass blocks, have 5 HP and are friendly. When killed or dying
+they drop meat, which can be eaten or cooked and probably some feathers. Also they drop 
+randomly eggs, which can be thrown to spawn new chicken or fried and eaten. They appear
+with white or brown feathers.
 
 
-License: 
+License:
 ~~~~~~~~
-Code(if not stated differently):
+Code:
 (c) Copyright 2015-2016 BlockMen; modified zlib-License
 see "LICENSE.txt" for details.
 
-Media(if not stated differently):
+Media(textures and meshes/models):
+Gamit(WTFPL):
+  creatures_egg.png
+everything else:
 (c) Copyright (2014-2016) BlockMen; CC-BY-SA 3.0
 
-see each MOB-Module for detailed informations.
-
+Sounds:
+- creatures_chicken*.ogg, dobroide(https://freesound.org/people/dobroide) CC BY 3.0
 
 Github:
 ~~~~~~~
-https://github.com/BlockMen/cme
-
-
-Forum:
-~~~~~~
-https://forum.minetest.net/viewtopic.php?id=8638
-
-
-Changelog:
-~~~~~~~~~~
-see Changelog.txt
+https://github.com/BlockMen/cme/chicken
