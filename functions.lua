@@ -123,6 +123,8 @@ local function killMob(me, def)
   me:set_velocity(nullVec)
   me:set_properties({collisionbox = nullVec})
   me:set_hp(0)
+  -- Must be non-zero otherwise mob is removed before death animation.
+  me:set_hp(1)
 
   if def.sounds and def.sounds.on_death then
     local death_snd = def.sounds.on_death
