@@ -1,36 +1,26 @@
-Mod/Modpack Creatures
-=====================
+Creatures MOB-Engine
+====================
 Copyright (c) 2015-2016 BlockMen <blockmen2015@gmail.com>
 
-Version: 2.3.1
+Version: 2.0.2
 
 
-A Mod(pack) for Minetest that provides a MOB-Engine and adds several creatures to the game.
-Currently included: Ghosts, Zombies, Sheep, Chicken and Oerrki.
+This mod provides an engine, that handles the base function for MOB in Minetest.
+It offers an easy way to register MOB and allows to custom handling for the needs
+of each mob. This engine aims to be a solid base, that has a good balance between
+performance and functionality.
+See API.txt for more informations on how to use this engine for mobs.
 
 
-License: 
+License:
 ~~~~~~~~
-Code(if not stated differently):
+Code:
 (c) Copyright 2015-2016 BlockMen; modified zlib-License
 see "LICENSE.txt" for details.
 
-Media(if not stated differently):
+Media(textures and other media):
 (c) Copyright (2014-2016) BlockMen; CC-BY-SA 3.0
-
-see each MOB-Module for detailed informations.
-
 
 Github:
 ~~~~~~~
-https://github.com/BlockMen/cme
-
-
-Forum:
-~~~~~~
-https://forum.minetest.net/viewtopic.php?id=8638
-
-
-Changelog:
-~~~~~~~~~~
-see Changelog.txt
+https://github.com/BlockMen/cme/creatures
