@@ -180,13 +180,13 @@ local function translate_def(def)
 
     if not self.can_fly then
       if not self.in_water then
-        self.object:setacceleration({x = 0, y = -15, z = 0})
+        self.object:set_acceleration({x = 0, y = -15, z = 0})
       end
     end
 
     -- check if falling and set velocity only 0 when not falling
     if self.fall_dist == 0 then
-      self.object:setvelocity(nullVec)
+      self.object:set_velocity(nullVec)
     end
 
     self.object:set_hp(self.hp)
@@ -466,8 +466,8 @@ local function makeSpawnerEntiy(mob_name, model)
 
     on_activate = function(self)
       self.timer = 0
-		  self.object:setvelocity(nullVec)
-		  self.object:setacceleration(nullVec)
+		  self.object:set_velocity(nullVec)
+		  self.object:set_acceleration(nullVec)
 		  self.object:set_armor_groups({immortal = 1})
       --self.object:set_bone_position("Root", nullVec, {x=45,y=0,z=0})
 	   end,
@@ -476,7 +476,7 @@ local function makeSpawnerEntiy(mob_name, model)
        self.timer = self.timer + dtime
        if self.timer > 30 then
          self.timer = 0
-         local n = core.get_node_or_nil(self.object:getpos())
+         local n = core.get_node_or_nil(self.object:get_pos())
          if n and n.name and n.name ~= mob_name .. "_spawner" then
            self.object:remove()
          end
@@ -601,7 +601,7 @@ local function register_alias_entity(old_mob, new_mob)
     makes_footstep_sound = false,
 
     on_activate = function(self)
-      local pos = self.object:getpos()
+      local pos = self.object:get_pos()
       if pos then
         core.add_entity(pos, new_mob)
       end
