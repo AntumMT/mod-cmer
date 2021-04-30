@@ -1,36 +1,26 @@
-Mod/Modpack Creatures
-=====================
+Ghost for Creatures MOB-Engine
+==============================
 Copyright (c) 2015-2016 BlockMen <blockmen2015@gmail.com>
 
-Version: 2.3.1
+Version: 2.0 Beta
 
 
-A Mod(pack) for Minetest that provides a MOB-Engine and adds several creatures to the game.
-Currently included: Ghosts, Zombies, Sheep, Chicken and Oerrki.
+Adds ghosts to Minetest (requires Creatures MOB-Engine).
+Ghosts only spawn at night-time and not underground.
+They are flying in the world and attack you players if they notice them.
+Ghosts have 12 HP and don't drop any items atm.
 
 
 License: 
 ~~~~~~~~
-Code(if not stated differently):
+Code:
 (c) Copyright 2015-2016 BlockMen; modified zlib-License
 see "LICENSE.txt" for details.
 
-Media(if not stated differently):
+Media(sounds, textures and meshes/models):
 (c) Copyright (2014-2016) BlockMen; CC-BY-SA 3.0
-
-see each MOB-Module for detailed informations.
 
 
 Github:
 ~~~~~~~
-https://github.com/BlockMen/cme
-
-
-Forum:
-~~~~~~
-https://forum.minetest.net/viewtopic.php?id=8638
-
-
-Changelog:
-~~~~~~~~~~
-see Changelog.txt
+https://github.com/BlockMen/cme/ghost
