@@ -294,6 +294,11 @@ creatures.on_step = function(self, dtime)
     return
   end
 
+  -- set default speed if not specified
+  if def.combat then
+    def.combat.attack_speed = def.combat.attack_speed or 1.0
+  end
+
   -- timer updates
   self.lifetimer = self.lifetimer + dtime
   self.modetimer = self.modetimer + dtime
