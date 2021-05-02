@@ -339,9 +339,12 @@ creatures.on_step = function(self, dtime)
   local modes = def.modes
   local current_mode = self.mode
   local me = self.object
-  local current_pos = me:get_pos()
-  current_pos.y = current_pos.y + 0.5
-  local moved = hasMoved(current_pos, self.last_pos) or false
+  local moved = false
+  local current_pos = me:get_pos() -- FIXME: why does this return nil sometimes?
+  if current_pos ~= nil then
+    current_pos.y = current_pos.y + 0.5
+    moved = hasMoved(current_pos, self.last_pos) or false
+  end
   local fallen = false
 
   -- Update pos and current node if necessary
