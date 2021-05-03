@@ -329,7 +329,8 @@ creatures.on_step = function(self, dtime)
 
 	if self.lifetimer > def.stats.lifetime and not (self.mode == "attack" and self.target) then
 		self.lifetimer = 0
-		if not self.tamed or (self.tamed and def.stats.dies_when_tamed) then
+		--if not self.tamed or (self.tamed and def.stats.dies_when_tamed) then
+		if not self.owner or def.stats.dies_when_tamed then
 			killMob(self.object, def)
 		end
 	end
