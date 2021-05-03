@@ -675,6 +675,7 @@ creatures.get_staticdata = function(self)
 		hp = self.object:get_hp(),
 		mode = self.mode,
 		tamed = self.tamed,
+		owner = self.owner,
 		modetimer = self.modetimer,
 		lifetimer = self.lifetimer,
 		soundtimer = self.soundtimer,
