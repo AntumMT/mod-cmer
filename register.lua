@@ -425,12 +425,12 @@ local function eggSpawn(itemstack, placer, pointed_thing, egg_def)
 		local height = (egg_def.box[5] or 2) - (egg_def.box[2] or 0)
 		if checkSpace(pos, height) == true then
 			local ref = core.add_entity(pos, egg_def.mob_name)
-	  if ref and placer:is_player() then
-			 local entity = ref:get_luaentity()
-					-- set owner
-					-- FIXME: "owner" attribute does not persist after server restart
-					if entity.ownable then entity.owner = placer:get_player_name() end
-			 end
+			if ref and placer:is_player() then
+				local entity = ref:get_luaentity()
+				-- set owner
+				-- FIXME: "owner" attribute does not persist after server restart
+				if entity.ownable then entity.owner = placer:get_player_name() end
+			end
 			if core.settings:get_bool("creative_mode") ~= true then
 				itemstack:take_item()
 			end
