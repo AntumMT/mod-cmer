@@ -428,7 +428,6 @@ local function eggSpawn(itemstack, placer, pointed_thing, egg_def)
 			if ref and placer:is_player() then
 				local entity = ref:get_luaentity()
 				-- set owner
-				-- FIXME: "owner" attribute does not persist after server restart
 				if entity.ownable then entity.owner = placer:get_player_name() end
 			end
 			if core.settings:get_bool("creative_mode") ~= true then
