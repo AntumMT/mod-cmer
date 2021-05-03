@@ -28,7 +28,7 @@ local function translate_def(def)
 		visual = "mesh",
 		stepheight = 0.6, -- ensure we get over slabs/stairs
 		automatic_face_movement_dir = def.model.rotation or 0.0,
-	ownable = def.ownable,
+		ownable = def.ownable,
 
 		mesh = def.model.mesh,
 		textures = def.model.textures,
