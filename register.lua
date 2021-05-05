@@ -56,7 +56,7 @@ local function translate_def(def)
 	end
 
 	-- Check if the modes have correct sum
-	local mode_chance_sum = creatures.sumChances(new_def.modes)
+	local mode_chance_sum = cmer.sumChances(new_def.modes)
 	if mode_chance_sum > 1 then
 		throw_warning("Chance of modes too high for MOB: " .. def.name ..
 				". Mode chances will be incorrect.")
@@ -99,7 +99,7 @@ local function translate_def(def)
 
 
 	new_def.get_staticdata = function(self)
-		local main_tab = creatures.get_staticdata(self)
+		local main_tab = cmer.get_staticdata(self)
 		-- is own staticdata function defined? If so, merge results
 		if def.get_staticdata then
 			local data = def.get_staticdata(self)
@@ -210,7 +210,7 @@ local function translate_def(def)
 			return
 		end
 
-		creatures.on_punch(self, puncher, time_from_last_punch, tool_capabilities, dir)
+		cmer.on_punch(self, puncher, time_from_last_punch, tool_capabilities, dir)
 	end
 
 	new_def.on_rightclick = function(self, clicker)
@@ -218,7 +218,7 @@ local function translate_def(def)
 			return
 		end
 
-		creatures.on_rightclick(self, clicker)
+		cmer.on_rightclick(self, clicker)
 	end
 
 	new_def.on_step = function(self, dtime)
@@ -226,13 +226,13 @@ local function translate_def(def)
 			return
 		end
 
-		creatures.on_step(self, dtime)
+		cmer.on_step(self, dtime)
 	end
 
 	return new_def
 end
 
-function creatures.register_mob(def) -- returns true if sucessfull
+function cmer.register_mob(def) -- returns true if sucessfull
 	if not def or not def.name then
 		throw_error("Can't register mob. No name or Definition given.")
 		return false
@@ -247,7 +247,7 @@ function creatures.register_mob(def) -- returns true if sucessfull
 		local spawn_def = def.spawning
 		spawn_def.mob_name = def.name
 		spawn_def.mob_size = def.model.collisionbox
-		if creatures.register_spawn(spawn_def) ~= true then
+		if cmer.register_spawn(spawn_def) ~= true then
 			throw_error("Couldn't register spawning for '" .. def.name .. "'")
 		end
 
@@ -255,7 +255,7 @@ function creatures.register_mob(def) -- returns true if sucessfull
 			local egg_def = def.spawning.spawn_egg
 			egg_def.mob_name = def.name
 			egg_def.box = def.model.collisionbox
-			creatures.register_egg(egg_def)
+			cmer.register_egg(egg_def)
 		end
 
 		if spawn_def.spawner then
@@ -264,7 +264,7 @@ function creatures.register_mob(def) -- returns true if sucessfull
 			spawner_def.range = spawner_def.range or 4
 			spawner_def.number = spawner_def.number or 6
 			spawner_def.model = def.model
-			creatures.register_spawner(spawner_def)
+			cmer.register_spawner(spawner_def)
 		end
 	end
 
@@ -330,7 +330,7 @@ local function groupSpawn(pos, mob, group, nodes, range, max_loops)
 	end
 end
 
-function creatures.register_spawn(spawn_def)
+function cmer.register_spawn(spawn_def)
 	if not spawn_def or not spawn_def.abm_nodes then
 		throw_error("No valid definition for given.")
 		return false
@@ -380,7 +380,7 @@ function creatures.register_spawn(spawn_def)
 			-- creature count check
 			local max
 			if active_object_count_wider > (spawn_def.max_number or 1) then
-				local mates_num = #creatures.findTarget(nil, pos, 16, "mate", spawn_def.mob_name, true)
+				local mates_num = #cmer.findTarget(nil, pos, 16, "mate", spawn_def.mob_name, true)
 				if not spawn_def.max_number or (mates_num or 0) >= spawn_def.max_number then
 					return
 				else
@@ -438,7 +438,7 @@ local function eggSpawn(itemstack, placer, pointed_thing, egg_def)
 	end
 end
 
-function creatures.register_egg(egg_def)
+function cmer.register_egg(egg_def)
 	if not egg_def or not egg_def.mob_name or not egg_def.box then
 		throw_error("Can't register Spawn-Egg. Not enough parameters given.")
 		return false
@@ -492,7 +492,7 @@ local function makeSpawnerEntiy(mob_name, model)
 end
 
 local function spawnerSpawn(pos, spawner_def)
-	local mates = creatures.findTarget(nil, pos, spawner_def.range, "mate", spawner_def.mob_name, true) or {}
+	local mates = cmer.findTarget(nil, pos, spawner_def.range, "mate", spawner_def.mob_name, true) or {}
 	if #mates >= spawner_def.number then
 		return false
 	end
@@ -528,7 +528,7 @@ end
 
 
 local spawner_timers = {}
-function creatures.register_spawner(spawner_def)
+function cmer.register_spawner(spawner_def)
 	if not spawner_def or not spawner_def.mob_name or not spawner_def.model then
 		throw_error("Can't register Spawn-Egg. Not enough parameters given.")
 		return false
@@ -574,7 +574,7 @@ function creatures.register_spawner(spawner_def)
 					spawner_timers[id] = os.time()
 				end
 				local time_from_last_call = os.time() - spawner_timers[id]
-				local mobs,player_near = creatures.findTarget(nil, pos, spawner_def.player_range, "player", nil, true, true)
+				local mobs,player_near = cmer.findTarget(nil, pos, spawner_def.player_range, "player", nil, true, true)
 				if player_near == true and time_from_last_call > 10 and (math.random(1, 5) == 1 or (time_from_last_call ) > 27) then
 					spawner_timers[id] = os.time()
 
@@ -619,7 +619,7 @@ local function register_alias_entity(old_mob, new_mob)
 end
 
 
-function creatures.register_alias(old_mob, new_mob) -- returns true if sucessfull
+function cmer.register_alias(old_mob, new_mob) -- returns true if sucessfull
 	local def = core.registered_entities[new_mob]
 	if not def then
 		throw_error("No valid definition for given.")
