@@ -27,3 +27,7 @@ Github:
 ~~~~~~~
 Revived: https://github.com/AntumMT/mod-creatures
 Orignal Creatures MOB-Engine: https://github.com/BlockMen/cme
+
+Docs:
+~~~~~~~
+[API](https://antummt.github.io/mod-cmer/docs/api.html)
