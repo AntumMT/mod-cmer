@@ -64,6 +64,7 @@ local colors = {
 local def = {
   -- general
   name = "creatures:chicken",
+	ownable = true,
   stats = {
     hp = 5,
     lifetime = 300, -- 5 Minutes
