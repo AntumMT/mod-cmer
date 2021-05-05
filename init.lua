@@ -22,7 +22,7 @@
 
 
 -- Egg
-dofile(core.get_modpath("chicken") .. "/egg.lua")
+dofile(core.get_modpath(core.get_current_modname()) .. "/egg.lua")
 local function dropEgg(obj)
   local pos = obj:get_pos()
   if pos then
