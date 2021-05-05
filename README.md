@@ -2,7 +2,7 @@ Creatures Revived
 ====================
 Copyright (c) 2015-2016 BlockMen <blockmen2015@gmail.com>
 
-Version: 1.0
+Version: 1.1
 
 
 A revived version of BlockMen's Creatures MOB-Engine mod.
