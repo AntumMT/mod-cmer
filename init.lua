@@ -122,10 +122,6 @@ local def = {
     number = 1,
     light = {min = 8, max = 15},
     height_limit = {min = 0, max = 150},
-
-    spawn_egg = {
-      description = "Chicken Spawn-Egg",
-    },
   },
 
   drops = {
