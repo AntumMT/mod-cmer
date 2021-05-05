@@ -1,9 +1,11 @@
-Creatures Revived
-====================
+## Creatures Revived
+
 Copyright (c) 2015-2016 BlockMen <blockmen2015@gmail.com>
 
 Version: 1.1
 
+---
+### Description:
 
 A revived version of BlockMen's Creatures MOB-Engine mod.
 
@@ -13,21 +15,18 @@ of each mob. This engine aims to be a solid base, that has a good balance betwee
 performance and functionality.
 See API.txt for more informations on how to use this engine for mobs.
 
+---
+### Licensing:
 
-License:
-~~~~~~~~
-Code:
-(c) Copyright 2015-2016 BlockMen; modified zlib-License
-see "LICENSE.txt" for details.
+- Code: [modified Zlib](LICENSE.txt) : (c) Copyright 2015-2016 BlockMen
+- Media(textures and other media): (c) Copyright (2014-2016) BlockMen; CC-BY-SA 3.0
 
-Media(textures and other media):
-(c) Copyright (2014-2016) BlockMen; CC-BY-SA 3.0
+---
+### Links:
 
-Github:
-~~~~~~~
-Revived: https://github.com/AntumMT/mod-creatures
-Orignal Creatures MOB-Engine: https://github.com/BlockMen/cme
-
-Docs:
-~~~~~~~
-[API](https://antummt.github.io/mod-cmer/docs/api.html)
+- Git repo:
+  - [Revived](https://github.com/AntumMT/mod-cmer)
+  - [Orignal Creatures MOB-Engine](https://github.com/BlockMen/cme)
+- [API](https://antummt.github.io/mod-cmer/docs/api.html)
+- [Changelog](CHANGES.txt)
+- [TODO](TODO.txt)
