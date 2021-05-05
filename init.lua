@@ -107,7 +107,7 @@ local def = {
   },
 }
 
-creatures.register_mob(def)
+cmer.register_mob(def)
 
 -- Convert "Oerrki's" (caused by typo)
-creatures.register_alias("creatures:oerrki", "creatures:oerkki")
+cmer.register_alias("creatures:oerrki", "creatures:oerkki")
