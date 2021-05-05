@@ -26,7 +26,7 @@ dofile(core.get_modpath("chicken") .. "/egg.lua")
 local function dropEgg(obj)
   local pos = obj:get_pos()
   if pos then
-    creatures.dropItems(pos, {{"creatures:egg"}})
+    cmer.dropItems(pos, {{"creatures:egg"}})
   end
 end
 
@@ -140,7 +140,7 @@ local def = {
 
   on_activate = function(self, staticdata)
     if not self.feather_color then
-      self.feather_color = creatures.rnd(colors) or "white"
+      self.feather_color = cmer.rnd(colors) or "white"
     end
     -- update feather color
     self.object:set_properties({textures = {"creatures_chicken_" .. self.feather_color .. ".png"}})
@@ -154,4 +154,4 @@ local def = {
   end
 }
 
-creatures.register_mob(def)
+cmer.register_mob(def)
