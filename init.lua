@@ -111,7 +111,7 @@ local def = {
   }
 }
 
-creatures.register_mob(def)
+cmer.register_mob(def)
 
 
 -- Place spawners in dungeons
