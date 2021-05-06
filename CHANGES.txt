@@ -1,4 +1,8 @@
 
+revived-1.2
+- Removed built-in items.
+
+
 revived-1.1
 - Renamed to "cmer" to discern from other versions.
 
