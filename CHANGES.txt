@@ -1,6 +1,7 @@
 
 revived-1.2
 - Removed built-in items.
+- Removed built-in spawnegg support.
 
 
 revived-1.1
