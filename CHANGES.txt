@@ -7,6 +7,8 @@ revived-1.1
 
 revived-1.0
 - Forked from original Creatures MOB-Engine code by BlockMen.
+- Updated for Minetest 5.x API.
+- Removed built-in modpack mobs (engine only).
 - Some nil check fixes.
 - Added default combat speed.
 - Added "owner" attribute.
