@@ -270,6 +270,8 @@ cmer.on_punch = function(self, puncher, time_from_last_punch, tool_capabilities,
 	local mypos = me:get_pos()
 
 	changeHP(self, calcPunchDamage(me, time_from_last_punch, tool_capabilities) * -1, "cmer_hit_01")
+	-- reset lifetimer when attacked
+	self.lifetimer = 0
 	if puncher then
 		if self.hostile then
 			self.mode = "attack"
