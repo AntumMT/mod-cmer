@@ -309,7 +309,9 @@ cmer.on_step = function(self, dtime)
 	end
 
 	-- timer updates
-	self.lifetimer = self.lifetimer + dtime
+	if not self.owner then
+		self.lifetimer = self.lifetimer + dtime
+	end
 	self.modetimer = self.modetimer + dtime
 	self.soundtimer = self.soundtimer + dtime
 	self.yawtimer = self.yawtimer + dtime
