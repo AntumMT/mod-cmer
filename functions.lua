@@ -338,7 +338,8 @@ cmer.on_step = function(self, dtime)
 		return
 	end
 
-	if self.lifetimer > def.stats.lifetime and not (self.mode == "attack" and self.target) then
+	local no_death_modes = (self.mode == "attack" or self.mode == "follow" or self.mode == "panic")
+	if self.lifetimer > def.stats.lifetime and not (no_death_modes and self.target) then
 		self.lifetimer = 0
 		--if not self.tamed or (self.tamed and def.stats.dies_when_tamed) then
 		if not self.owner or def.stats.dies_when_tamed then
