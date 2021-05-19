@@ -334,7 +334,8 @@ cmer.on_step = function(self, dtime)
 		self.lifetimer = 0
 		--if not self.tamed or (self.tamed and def.stats.dies_when_tamed) then
 		if not self.owner or def.stats.dies_when_tamed then
-			killMob(self.object, def)
+			self.object:remove()
+			return
 		end
 	end
 
@@ -345,7 +346,7 @@ cmer.on_step = function(self, dtime)
 	local me = self.object
 	local moved = false
 	local current_pos = me:get_pos()
-	if current_pos == nil then return end -- FIXME: why does this return nil sometimes?
+	if current_pos == nil then return end
 
 	current_pos.y = current_pos.y + 0.5
 	moved = hasMoved(current_pos, self.last_pos) or false
