@@ -48,11 +48,7 @@ local function knockback(selfOrObject, dir, old_dir, strengh)
 	end)
 end
 
-local function on_hit(me, hitsound)
-	if hitsound then
-		core.sound_play(hitsound, {object=me})
-	end
-
+local function on_hit(me)
 	core.after(0.1, function()
 		me:set_texture_mod("^[colorize:#c4000099")
 	end)
@@ -184,10 +180,16 @@ local function onDamage(self, hp, hitsound)
 		self.stunned = true
 			killMob(me, def)
 	else
-		on_hit(me, hitsound) -- red flashing
-		if def.sounds and def.sounds.on_damage then
-			local dmg_snd = def.sounds.on_damage
-			core.sound_play(dmg_snd.name, {pos = me:get_pos(), max_hear_distance = dmg_snd.distance or 5, gain = dmg_snd.gain or 1})
+		on_hit(me) -- red flashing
+		if def.sounds then
+			if def.sounds.on_damage then
+				local dmg_snd = def.sounds.on_damage
+				core.sound_play(dmg_snd.name, {pos = me:get_pos(), max_hear_distance = dmg_snd.distance or 5, gain = dmg_snd.gain or 1})
+			end
+
+			if hitsound and def.sounds.play_default_hit ~= false then
+				core.sound_play(hitsound, {object=me})
+			end
 		end
 	end
 end
@@ -267,7 +269,6 @@ cmer.on_punch = function(self, puncher, time_from_last_punch, tool_capabilities,
 	local me = self.object
 	local mypos = me:get_pos()
 
-	-- TODO: allow sound to be customized
 	changeHP(self, calcPunchDamage(me, time_from_last_punch, tool_capabilities) * -1, "cmer_hit_01")
 	if puncher then
 		if self.hostile then

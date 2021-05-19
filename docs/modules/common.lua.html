@@ -39,8 +39,8 @@
 
 <h2>Modules</h2>
 <ul class="nowrap">
-  <li><a href="../modules/register.lua.html">register.lua</a></li>
   <li><strong>common.lua</strong></li>
+  <li><a href="../modules/register.lua.html">register.lua</a></li>
 </ul>
 
 </div>
@@ -59,19 +59,19 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#cmer.rnd">cmer.rnd (<i>tab</i>, <i>errval</i>)</a></td>
+	<td class="name" nowrap><a href="#cmer.rnd">cmer.rnd (tab, errval)</a></td>
 	<td class="summary">Returns a weighted random table element.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#cmer.compare_pos">cmer.compare_pos (<i>pos1</i>, <i>pos2</i>)</a></td>
+	<td class="name" nowrap><a href="#cmer.compare_pos">cmer.compare_pos (pos1, pos2)</a></td>
 	<td class="summary">Compares two positions.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#cmer.findTarget">cmer.findTarget (<i>search_obj</i>, <i>pos</i>, <i>radius</i>, <i>search_type</i>, <i>ignore_mob</i>[, <i>xray</i>], <i>no_count</i>)</a></td>
+	<td class="name" nowrap><a href="#cmer.findTarget">cmer.findTarget (search_obj, pos, radius, search_type, ignore_mob[, xray], no_count)</a></td>
 	<td class="summary">Returns table of found objects (as ObjectRef) and boolean player_near.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#cmer.dropItems">cmer.dropItems (<i>pos</i>, <i>drops</i>)</a></td>
+	<td class="name" nowrap><a href="#cmer.dropItems">cmer.dropItems (pos, drops)</a></td>
 	<td class="summary">Drops items at position <code>pos</code>.</td>
 	</tr>
 </table>
@@ -85,7 +85,7 @@
     <dl class="function">
     <dt>
     <a name = "cmer.rnd"></a>
-    <strong>cmer.rnd (<i>tab</i>, <i>errval</i>)</strong>
+    <strong>cmer.rnd (tab, errval)</strong>
     </dt>
     <dd>
     Returns a weighted random table element. </p>
@@ -97,12 +97,12 @@
 
     <h3>Parameters:</h3>
     <ul>
-          <li><span class="parameter">tab</span>
+        <li><span class="parameter">tab</span>
 
 
 
         </li>
-          <li><span class="parameter">errval</span>
+        <li><span class="parameter">errval</span>
 
 
 
@@ -121,7 +121,7 @@
 </dd>
     <dt>
     <a name = "cmer.compare_pos"></a>
-    <strong>cmer.compare_pos (<i>pos1</i>, <i>pos2</i>)</strong>
+    <strong>cmer.compare_pos (pos1, pos2)</strong>
     </dt>
     <dd>
     Compares two positions.
@@ -129,13 +129,13 @@
 
     <h3>Parameters:</h3>
     <ul>
-          <li><span class="parameter">pos1</span>
+        <li><span class="parameter">pos1</span>
             <span class="types"><span class="type">pos</span></span>
 
 
 
         </li>
-          <li><span class="parameter">pos2</span>
+        <li><span class="parameter">pos2</span>
             <span class="types"><span class="type">pos</span></span>
 
 
@@ -156,7 +156,7 @@
 </dd>
     <dt>
     <a name = "cmer.findTarget"></a>
-    <strong>cmer.findTarget (<i>search_obj</i>, <i>pos</i>, <i>radius</i>, <i>search_type</i>, <i>ignore_mob</i>[, <i>xray</i>], <i>no_count</i>)</strong>
+    <strong>cmer.findTarget (search_obj, pos, radius, search_type, ignore_mob[, xray], no_count)</strong>
     </dt>
     <dd>
     Returns table of found objects (as ObjectRef) and boolean player_near.
@@ -164,29 +164,30 @@
 
     <h3>Parameters:</h3>
     <ul>
-          <li><span class="parameter">search_obj</span>
+        <li><span class="parameter">search_obj</span>
          Searching object. Can be <code>nil</code>.
         </li>
-          <li><span class="parameter">pos</span>
+        <li><span class="parameter">pos</span>
             <span class="types"><span class="type">pos</span></span>
          Starting position for search radius.
         </li>
-          <li><span class="parameter">radius</span>
+        <li><span class="parameter">radius</span>
             <span class="types"><span class="type">int</span></span>
          Radius for searching in blocks/node.
         </li>
-          <li><span class="parameter">search_type</span>
+        <li><span class="parameter">search_type</span>
             <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
          Specifies returned object requirements(One of <strong><em>all</em></strong>, <strong><em>hostile</em></strong> (ignores <code>ignore_mob</code> if specified), <strong><em>nonhostile</em></strong>, <strong><em>player</em></strong>, <strong><em>mates</em></strong> (requires <code>ignore_mob</code> specifies)).
         </li>
-          <li><span class="parameter">ignore_mob</span>
+        <li><span class="parameter">ignore_mob</span>
          Specifies creature that is ignored or searched, depending on <code>search_type</code>.
         </li>
-          <li><span class="parameter">xray (<em>optional</em>)</span>
+        <li><span class="parameter">xray</span>
             <span class="types"><span class="type">bool</span></span>
          Allows searching through blocks/nodes (default: <code>false</code>).
+         (<em>optional</em>)
         </li>
-          <li><span class="parameter">no_count</span>
+        <li><span class="parameter">no_count</span>
          Skips collecting loop and returns just the boolean player_near.
         </li>
     </ul>
@@ -203,7 +204,7 @@
 </dd>
     <dt>
     <a name = "cmer.dropItems"></a>
-    <strong>cmer.dropItems (<i>pos</i>, <i>drops</i>)</strong>
+    <strong>cmer.dropItems (pos, drops)</strong>
     </dt>
     <dd>
     Drops items at position <code>pos</code>.
@@ -211,11 +212,11 @@
 
     <h3>Parameters:</h3>
     <ul>
-          <li><span class="parameter">pos</span>
+        <li><span class="parameter">pos</span>
             <span class="types"><span class="type">pos</span></span>
          Where to drop items.
         </li>
-          <li><span class="parameter">drops</span>
+        <li><span class="parameter">drops</span>
             <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.6">table</a></span>
          List of item <code>DropDef</code>.
         </li>
@@ -232,8 +233,8 @@
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
-<i>generated by <a href="http://github.com/AntumDeluge/LDoc">LDoc 1.4.6-antum-2</a></i>
-<i style="float:right;">Last updated 2021-05-06 15:47:28 </i>
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2021-05-19 12:04:23 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
