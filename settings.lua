@@ -11,14 +11,14 @@ cmer_chicken.lifetime = tonumber(core.settings:get("chicken.lifetime")) or 5 * 6
 --
 --  @setting chicken.spawn_interval
 --  @settype int
---  @default 55
+--  @default 120 (2 minutes)
 --  @see [ABM definition](http://minetest.gitlab.io/minetest/definition-tables.html#abm-activeblockmodifier-definition)
-cmer_chicken.spawn_interval = tonumber(core.settings:get("chicken.spawn_interval")) or 55
+cmer_chicken.spawn_interval = tonumber(core.settings:get("chicken.spawn_interval")) or 2 * 60
 
 --- Chance of spawn at interval.
 --
 --  @setting chicken.spawn_chance
 --  @settype int
---  @default 7800
+--  @default 9000
 --  @see [ABM definition](http://minetest.gitlab.io/minetest/definition-tables.html#abm-activeblockmodifier-definition)
-cmer_chicken.spawn_chance = tonumber(core.settings:get("chicken.spawn_chance")) or 7800
+cmer_chicken.spawn_chance = tonumber(core.settings:get("chicken.spawn_chance")) or 9000

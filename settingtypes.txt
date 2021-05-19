@@ -8,11 +8,11 @@ chicken.lifetime (Lifespan) int 300 1
 # Spawn interval in seconds.
 #
 # type:    int
-# default: 55
-chicken.spawn_interval (Spawn interval) int 55 1
+# default: 120
+chicken.spawn_interval (Spawn interval) int 120 1
 
 # Chance of spawn at interval.
 #
 # type:    int
-# default: 7800
-chicken.spawn_chance (Spawn chance) int 7800 1
+# default: 9000
+chicken.spawn_chance (Spawn chance) int 9000 1
