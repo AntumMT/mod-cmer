@@ -343,6 +343,7 @@ end
 --  @tfield string mesh Mesh name (see Minetest Documentation for supported filetypes).
 --  @tfield table textures Table of textures (see Minetest Documentation).
 --  @tfield NodeBox collisionbox Defines mesh collision box (see Minetest Documentation).
+--  @tfield[opt] table scale Sets visual scale (default: {x=1, y=1}).
 --  @tfield[opt] float rotation Sets rotation offset when moving (default: 0.0).
 --  @tfield[opt] bool backface_culling Set to `true` to enable backface culling.
 --  @tfield[opt] table animations Table of `AnimationDef` used if defined.
@@ -413,7 +414,7 @@ end
 --  @tfield[opt] float attack_speed Time in seconds between hits (default: 1.0).
 --  @tfield float attack_radius Distance in blocks mob can reach to hit.
 --  @tfield bool search_enemy `true` to search enemies to attack.
---  @tfield int search_timer Time in seconds to search an enemy (only if none found yet).
+--  @tfield[opt] int search_timer Time in seconds to search an enemy (only if none found yet) (default: 2).
 --  @tfield int search_radius Radius in blocks within enemies are searched.
 --  @tfield string search_type What enemy is being searched (see types at `cmer.findTarget`).
 
