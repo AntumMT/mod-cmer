@@ -46,6 +46,7 @@ end
 
 
 local scripts = {
+	"settings",
 	"common",
 	"functions",
 	"register",

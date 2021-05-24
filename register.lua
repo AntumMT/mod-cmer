@@ -24,8 +24,6 @@
 --  @module register.lua
 
 
-local allow_hostile = core.settings:get_bool("only_peaceful_mobs") ~= true
-
 local function translate_def(def)
 	local new_def = {
 		physical = true,
@@ -201,7 +199,7 @@ local function translate_def(def)
 
 		self.object:set_hp(self.hp)
 
-		if not core.settings:get_bool("enable_damage") then
+		if not cmer.enable_damage then
 			self.hostile = false
 		end
 
@@ -266,7 +264,7 @@ function cmer.register_mob(def) -- returns true if sucessfull
 	core.register_entity(":" .. def.name, mob_def)
 
 	-- register spawn
-	if def.spawning and not (def.stats.hostile and not allow_hostile) then
+	if def.spawning and not (def.stats.hostile and not cmer.allow_hostile) then
 		local spawn_def = def.spawning
 		spawn_def.mob_name = def.name
 		spawn_def.mob_size = def.model.collisionbox
