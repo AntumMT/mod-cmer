@@ -118,7 +118,7 @@ local function translate_def(def)
 		return core.serialize(main_tab)
 	end
 
-	new_def.on_activate = function(self, staticdata)
+	new_def.on_activate = function(self, staticdata, dtime_s)
 
 		-- Add everything we need as basis for the engine
 		self.mob_name = def.name
@@ -210,16 +210,16 @@ local function translate_def(def)
 
 		-- call custom on_activate if defined
 		if def.on_activate then
-			def.on_activate(self, staticdata)
+			def.on_activate(self, staticdata, dtime_s)
 		end
 	end
 
-	new_def.on_punch = function(self, puncher, time_from_last_punch, tool_capabilities, dir)
-		if def.on_punch and def.on_punch(self, puncher, time_from_last_punch, tool_capabilities, dir) == true then
+	new_def.on_punch = function(self, puncher, tflp, tc, dir, damage)
+		if def.on_punch and def.on_punch(self, puncher, tflp, tc, dir, damage) == true then
 			return
 		end
 
-		cmer.on_punch(self, puncher, time_from_last_punch, tool_capabilities, dir)
+		cmer.on_punch(self, puncher, tflp, tc, dir, damage)
 	end
 
 	new_def.on_death = function(self, killer)
@@ -464,40 +464,45 @@ end
 --
 --  @section callbacks
 
---- Called when mob is right-clicked.
+--- Called when mob (re-)activated.
 --
---  @function CreatureDef.on_rightclick
+--  Note: staticdata is deserialized by MOB-Engine (including custom values).
+--
+--  @function CreatureDef.on_activate
 --  @param self
---  @param clicker
+--  @tparam string staticdata Formatted string data to be deserialized.
+--  @tparam int dtime_s The time passed since the object was unloaded, which can be used for updating the entity state.
+
+--- Called each server step, after movement and collision processing.
+--
+--  @function CreatureDef.on_step
+--  @param self
+--  @tparam float dtime Usually 0.1 seconds, as per the `dedicated_server_step` setting in `minetest.conf`.
 --  @treturn bool Prevents default action when returns `true`.
 
 --- Called when mob is punched.
 --
 --  @function CreatureDef.on_punch
 --  @param self
---  @param puncher Can be `nil`.
+--  @tparam ObjectRef puncher
+--  @param time_from_last_punch Meant for disallowing spamming of clicks.
+--  @tparam table tool_capabilities See: http://minetest.gitlab.io/minetest/tools.html
+--  @param dir Unit vector of direction of punch. Always defined. Points from the puncher to the punched.
+--  @tparam int damage Damage that will be done to entity.
+--  @treturn bool Prevents default action when returns `true`.
+
+--- Called when mob is right-clicked.
+--
+--  @function CreatureDef.on_rightclick
+--  @param self
+--  @tparam ObjectRef clicker Entity that did the punching.
 --  @treturn bool Prevents default action when returns `true`.
 
 --- Called when mob dies.
 --
 --  @function CreatureDef.on_death
 --  @param self
---  @tparam[opt] ObjectRef killer
-
---- Called each server step.
---
---  @function CreatureDef.on_step
---  @param self
---  @param dtime
---  @treturn bool Prevents default action when returns `true`.
-
---- Called when mob (re-)activated.
---
---  Note: staticdata is deserialized by MOB-Engine (including costum values).
---
---  @function CreatureDef.on_activate
---  @param self
---  @param staticdata
+--  @tparam ObjectRef killer (can be `nil`)
 
 --- Must return a table to save mob data (serialization is done by MOB-Engine).
 --  e.g:
