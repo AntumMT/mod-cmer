@@ -44,6 +44,7 @@
 <ul class="nowrap">
   <li><a href="../modules/common.lua.html">common.lua</a></li>
   <li><strong>register.lua</strong></li>
+  <li><a href="../modules/settings.lua.html">settings.lua</a></li>
 </ul>
 
 </div>
@@ -164,6 +165,8 @@
     <dd>
     Registers a new mob.
 
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -195,6 +198,8 @@
     <dd>
     Creature definition table.
 
+    </ul>
+    </ul>
 
     <h3>Fields:</h3>
     <ul>
@@ -238,21 +243,25 @@
          Defines spawning in world.
          (<em>optional</em>)
         </li>
-        <li><span class="parameter">on_rightclick</span>
+        <li><span class="parameter">on_activate</span>
             <span class="types"><span class="type">callback</span></span>
-         see: <a href="../modules/register.lua.html#CreatureDef.on_rightclick">CreatureDef.on_rightclick</a>
-        </li>
-        <li><span class="parameter">on_punch</span>
-            <span class="types"><span class="type">callback</span></span>
-         see: <a href="../modules/register.lua.html#CreatureDef.on_punch">CreatureDef.on_punch</a>
+         see: <a href="../modules/register.lua.html#CreatureDef.on_activate">CreatureDef.on_activate</a>
         </li>
         <li><span class="parameter">on_step</span>
             <span class="types"><span class="type">callback</span></span>
          see: <a href="../modules/register.lua.html#CreatureDef.on_step">CreatureDef.on_step</a>
         </li>
-        <li><span class="parameter">on_activate</span>
+        <li><span class="parameter">on_punch</span>
             <span class="types"><span class="type">callback</span></span>
-         see: <a href="../modules/register.lua.html#CreatureDef.on_activate">CreatureDef.on_activate</a>
+         see: <a href="../modules/register.lua.html#CreatureDef.on_punch">CreatureDef.on_punch</a>
+        </li>
+        <li><span class="parameter">on_rightclick</span>
+            <span class="types"><span class="type">callback</span></span>
+         see: <a href="../modules/register.lua.html#CreatureDef.on_rightclick">CreatureDef.on_rightclick</a>
+        </li>
+        <li><span class="parameter">on_death</span>
+            <span class="types"><span class="type">callback</span></span>
+         see: <a href="../modules/register.lua.html#CreatureDef.on_death">CreatureDef.on_death</a>
         </li>
         <li><span class="parameter">get_staticdata</span>
             <span class="types"><span class="type">callback</span></span>
@@ -276,6 +285,8 @@
     <dd>
     Stats definition table.
 
+    </ul>
+    </ul>
 
     <h3>Fields:</h3>
     <ul>
@@ -344,7 +355,8 @@
 <p> Which light level will burn creature (requires can_burn = true).</p>
 
 <p>  Example:</p>
-<pre><code>  light = {min=10, max=15}
+
+<pre><code>light = {min=10, max=15}
 </code></pre>
 
          (<em>optional</em>)
@@ -367,14 +379,17 @@
 <p>  Entity behavior definition. Behavior types are <strong><em>idle</em></strong>, <strong><em>walk</em></strong>, <strong><em>attack</em></strong>, <strong><em>follow</em></strong>, <strong><em>eat</em></strong>, <strong><em>death</em></strong>, &amp; <strong><em>panic</em></strong>. The sum of all modes must be 1.0.</p>
 
 <p>  Example:</p>
-<pre><code>  modes = {
-    idle = {chance=0.3,},
-    walk = {chance=0.7, moving_speed=1,},
-  }
+
+<pre><code>modes = {
+  idle = {chance=0.3,},
+  walk = {chance=0.7, moving_speed=1,},
+}
 </code></pre>
 
 
 
+    </ul>
+    </ul>
 
     <h3>Fields:</h3>
     <ul>
@@ -426,6 +441,8 @@
     <dd>
     Model definition table.
 
+    </ul>
+    </ul>
 
     <h3>Fields:</h3>
     <ul>
@@ -485,14 +502,17 @@
 <p>  Animations coincide with modes. E.g. <strong><em>idle</em></strong>, <strong><em>walk</em></strong>, etc.</p>
 
 <p>  Example:</p>
-<pre><code>  animations = {
-    idle = {start=25, stop=75, speed=15,},
-    walk = {start=75, stop=100, speed=15,},
-  }
+
+<pre><code>animations = {
+  idle = {start=25, stop=75, speed=15,},
+  walk = {start=75, stop=100, speed=15,},
+}
 </code></pre>
 
 
 
+    </ul>
+    </ul>
 
     <h3>Fields:</h3>
     <ul>
@@ -538,18 +558,21 @@
 <p>  <strong><em>random</em></strong> is a table of <a href="../modules/register.lua.html#SoundDef">SoundDef</a> that will be played randomly during the modes for which they are set.</p>
 
 <p>  Example:</p>
-<pre><code>  sounds = {
-    on_damage = {name="creatures_horse_neigh_02", gain=1.0},
-    on_death = {name="creatures_horse_snort_02", gain=1.0},
-    random = {
-      idle = {name="creatures_horse_snort_01", gain=1.0},
-      follow = {name="creatures_horse_neigh_01", gain=1.0, time_min=10},
-    },
-  }
+
+<pre><code>sounds = {
+  on_damage = {name="creatures_horse_neigh_02", gain=1.0},
+  on_death = {name="creatures_horse_snort_02", gain=1.0},
+  random = {
+    idle = {name="creatures_horse_snort_01", gain=1.0},
+    follow = {name="creatures_horse_neigh_01", gain=1.0, time_min=10},
+  },
+}
 </code></pre>
 
 
 
+    </ul>
+    </ul>
 
     <h3>Fields:</h3>
     <ul>
@@ -587,6 +610,8 @@
     <dd>
     Sound definition.
 
+    </ul>
+    </ul>
 
     <h3>Fields:</h3>
     <ul>
@@ -629,15 +654,18 @@
 <p>Item drops definition table. </p>
 
 <p>  Example:</p>
-<pre><code>  drops = {
-    {"default:wood"}, -- 1 item with 100% chance
-    {"default:wool", 1, chance=0.3}, -- 1 item with 30% chance
-    {"default:stick", {min=2, max=3}, chance=0.2}, -- between 2-3 items with 20% chance
-  }
+
+<pre><code>drops = {
+  {"default:wood"}, -- 1 item with 100% chance
+  {"default:wool", 1, chance=0.3}, -- 1 item with 30% chance
+  {"default:stick", {min=2, max=3}, chance=0.2}, -- between 2-3 items with 20% chance
+}
 </code></pre>
 
 
 
+    </ul>
+    </ul>
 
 
 
@@ -652,6 +680,8 @@
     <dd>
     Combat definition table.
 
+    </ul>
+    </ul>
 
     <h3>Fields:</h3>
     <ul>
@@ -699,6 +729,8 @@
     <dd>
     Spawning definition table.
 
+    </ul>
+    </ul>
 
     <h3>Fields:</h3>
     <ul>
@@ -756,6 +788,8 @@
     <dd>
     ABM nodes definition table.
 
+    </ul>
+    </ul>
 
     <h3>Fields:</h3>
     <ul>
@@ -782,6 +816,8 @@
     <dd>
     Spawner definition table.
 
+    </ul>
+    </ul>
 
     <h3>Fields:</h3>
     <ul>
@@ -823,6 +859,8 @@
 
 <p>  Note: staticdata is deserialized by MOB-Engine (including custom values).
 
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -853,6 +891,8 @@
     <dd>
     Called each server step, after movement and collision processing.
 
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -885,6 +925,8 @@
     <dd>
     Called when mob is punched.
 
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -933,6 +975,8 @@
     <dd>
     Called when mob is right-clicked.
 
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -965,6 +1009,8 @@
     <dd>
     Called when mob dies.
 
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -989,15 +1035,20 @@
     <strong>CreatureDef.get_staticdata (self)</strong>
     </dt>
     <dd>
-    Must return a table to save mob data (serialization is done by MOB-Engine).
-  e.g:
-  ``<code></p>
+
+<p>Must return a table to save mob data (serialization is done by MOB-Engine). </p>
+
+<p>  e.g:</p>
+
 <pre><code>return {
-  costum\_mob\_data = self.my\_value,
+  custom_mob_data = self.my_value,
 }
 </code></pre>
-<p>  </code>``
 
+
+
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -1028,6 +1079,8 @@
     <dd>
     Registers an alias for other mob, e.g.  from other mods or removed ones.
 
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -1059,7 +1112,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2021-05-23 23:36:23 </i>
+<i style="float:right;">Last updated 2021-05-24 00:02:25 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

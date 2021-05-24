@@ -297,10 +297,11 @@ end
 --  @tfield[opt] table drops List of item `DropDef`. Can also be a function. receives "self" reference.
 --  @tfield[opt] CombatDef combat Specifies behavior of hostile mobs in "attack" mode.
 --  @tfield[opt] SpawnDef spawning Defines spawning in world.
---  @tfield callback on_rightclick see: `CreatureDef.on_rightclick`
---  @tfield callback on_punch see: `CreatureDef.on_punch`
---  @tfield callback on_step see: `CreatureDef.on_step`
 --  @tfield callback on_activate see: `CreatureDef.on_activate`
+--  @tfield callback on_step see: `CreatureDef.on_step`
+--  @tfield callback on_punch see: `CreatureDef.on_punch`
+--  @tfield callback on_rightclick see: `CreatureDef.on_rightclick`
+--  @tfield callback on_death see: `CreatureDef.on_death`
 --  @tfield callback get_staticdata see: `CreatureDef.get_staticdata`
 
 
@@ -326,17 +327,19 @@ end
 --  @tparam[opt] table light Which light level will burn creature (requires can_burn = true).
 --
 --  Example:
---      light = {min=10, max=15}
+--
+--    light = {min=10, max=15}
 
 --- Modes definition table.
 --
 --  Entity behavior definition. Behavior types are ***idle***, ***walk***, ***attack***, ***follow***, ***eat***, ***death***, & ***panic***. The sum of all modes must be 1.0.
 --
 --  Example:
---      modes = {
---        idle = {chance=0.3,},
---        walk = {chance=0.7, moving_speed=1,},
---      }
+--
+--    modes = {
+--      idle = {chance=0.3,},
+--      walk = {chance=0.7, moving_speed=1,},
+--    }
 --
 --  @table ModeDef
 --  @tfield float chance Number between 0.0 and 1.0 (***NOTE:** sum of all modes MUST be 1.0*). If chance is 0 then mode is not chosen automatically.
@@ -365,10 +368,11 @@ end
 --  Animations coincide with modes. E.g. ***idle***, ***walk***, etc.
 --
 --  Example:
---      animations = {
---        idle = {start=25, stop=75, speed=15,},
---        walk = {start=75, stop=100, speed=15,},
---      }
+--
+--    animations = {
+--      idle = {start=25, stop=75, speed=15,},
+--      walk = {start=75, stop=100, speed=15,},
+--    }
 --
 --  @table AnimationDef
 --  @tfield int start Start frame.
@@ -384,14 +388,15 @@ end
 --  ***random*** is a table of `SoundDef` that will be played randomly during the modes for which they are set.
 --
 --  Example:
---      sounds = {
---        on_damage = {name="creatures_horse_neigh_02", gain=1.0},
---        on_death = {name="creatures_horse_snort_02", gain=1.0},
---        random = {
---          idle = {name="creatures_horse_snort_01", gain=1.0},
---          follow = {name="creatures_horse_neigh_01", gain=1.0, time_min=10},
---        },
---      }
+--
+--    sounds = {
+--      on_damage = {name="creatures_horse_neigh_02", gain=1.0},
+--      on_death = {name="creatures_horse_snort_02", gain=1.0},
+--      random = {
+--        idle = {name="creatures_horse_snort_01", gain=1.0},
+--        follow = {name="creatures_horse_neigh_01", gain=1.0, time_min=10},
+--      },
+--    }
 --
 --  @table SoundsDef
 --  @tparam[opt] SoundDef on_damage Sound played when entity is hit.
@@ -411,11 +416,12 @@ end
 --- Item drops definition table.
 --
 --  Example:
---      drops = {
---        {"default:wood"}, -- 1 item with 100% chance
---        {"default:wool", 1, chance=0.3}, -- 1 item with 30% chance
---        {"default:stick", {min=2, max=3}, chance=0.2}, -- between 2-3 items with 20% chance
---      }
+--
+--    drops = {
+--      {"default:wood"}, -- 1 item with 100% chance
+--      {"default:wool", 1, chance=0.3}, -- 1 item with 30% chance
+--      {"default:stick", {min=2, max=3}, chance=0.2}, -- between 2-3 items with 20% chance
+--    }
 --
 --  @table DropDef
 
@@ -503,12 +509,12 @@ end
 --  @tparam ObjectRef killer (can be `nil`)
 
 --- Must return a table to save mob data (serialization is done by MOB-Engine).
+--
 --  e.g:
---  ```
+--
 --    return {
---      costum_mob_data = self.my_value,
+--      custom_mob_data = self.my_value,
 --    }
---  ```
 --
 --  @function CreatureDef.get_staticdata
 --  @param self
