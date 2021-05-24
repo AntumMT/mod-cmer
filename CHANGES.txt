@@ -9,6 +9,7 @@ revived-1.1
 - entity's life timer is reset when attacked
 - can set custom on_death method
 - 'has_kockback' deprecated, use 'has_knockback'
+- does not automatically prepend colon (:) when registering a mob name
 
 
 revived-1.0

@@ -665,7 +665,7 @@ end
 
 
 local function makeSpawnerEntiy(mob_name, model)
-	core.register_entity(":" .. mob_name .. "_spawner_dummy", {
+	core.register_entity(mob_name .. "_spawner_dummy", {
 		hp_max = 1,
 		physical = false,
 		collide_with_objects = false,
