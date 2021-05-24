@@ -8,6 +8,7 @@ revived-1.1
 - entity's lifetime doesn't expire in modes "follow" & "panic"
 - entity's life timer is reset when attacked
 - can set custom on_death method
+- 'has_kockback' deprecated, use 'has_knockback'
 
 
 revived-1.0

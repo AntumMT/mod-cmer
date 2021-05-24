@@ -127,7 +127,13 @@ local function translate_def(def)
 		self.mode = ""
 		self.stunned = false -- if knocked back or hit do nothing else
 
-		self.has_kockback = def.stats.has_kockback
+		if def.stats.has_kockback or def.stats.has_kockback == false then
+			cmer.log("warning",
+				core.get_current_modname()
+				.. ": \"def.stats.has_kockback\" is deprecated, please use \"def.stats.has_knockback\"")
+		end
+
+		self.has_knockback = def.stats.has_knockback or def.stats.has_kockback -- backward compat
 		self.has_falldamage = def.stats.has_falldamage
 		self.can_swim = def.stats.can_swim
 		self.can_fly = def.stats.can_fly
@@ -317,7 +323,7 @@ end
 --  @tparam[opt] bool can_burn Takes damage of lava (default: `false`).
 --  @tparam[opt] bool can_panic Runs fast around when hit (requires mode "walk") (default: `false`).
 --  @tparam[opt] bool has_falldamage Deals damage if falling more than 3 blocks (default: `false`).
---  @tparam[opt] bool has_kockback Get knocked back when hit (default: `false`).
+--  @tparam[opt] bool has_knockback Get knocked back when hit (default: `false`).
 --  @tparam[opt] bool sneaky Disables step sounds if `true` (default: `false`).
 --  @tparam[opt] table light Which light level will burn creature (requires can_burn = true).
 --

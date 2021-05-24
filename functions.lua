@@ -278,7 +278,7 @@ cmer.on_punch = function(self, puncher, time_from_last_punch, tool_capabilities,
 			self.target = puncher
 		end
 		if time_from_last_punch >= 0.45 and self.stunned == false then
-			if self.has_kockback == true then
+			if self.has_knockback == true then
 				local v = me:get_velocity()
 				v.y = 0
 				if not self.can_fly then
