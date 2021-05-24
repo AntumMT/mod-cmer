@@ -37,7 +37,7 @@ local function translate_def(def)
 		mesh = def.model.mesh,
 		textures = def.model.textures,
 		collisionbox = def.model.collisionbox or {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
-		visual_size = def.model.scale or {x = 1, y = 1},
+		visual_size = def.model.scale or {x=1, y=1},
 		backface_culling = def.model.backface_culling or false,
 		collide_with_objects = def.model.collide_with_objects or true,
 		makes_footstep_sound = true,
@@ -51,7 +51,7 @@ local function translate_def(def)
 	}
 
 	-- Tanslate modes to better accessable format
-	for mn,def in pairs(def.modes) do
+	for mn, def in pairs(def.modes) do
 		local name = tostring(mn)
 		if name ~= "update_time" then
 			new_def.modes[name] = def
@@ -108,7 +108,7 @@ local function translate_def(def)
 		if def.get_staticdata then
 			local data = def.get_staticdata(self)
 			if data and type(data) == "table" then
-				for s,w in pairs(data) do
+				for s, w in pairs(data) do
 					main_tab[s] = w
 				end
 			end
@@ -146,10 +146,10 @@ local function translate_def(def)
 
 		-- Timers
 		self.lifetimer = 0
-		self.modetimer = math.random()--0
+		self.modetimer = math.random() -- 0
 		self.soundtimer = math.random()
 		self.nodetimer = 2 -- ensure we get the first step
-		self.yawtimer = math.random() * 2--0
+		self.yawtimer = math.random() * 2 -- 0
 		self.followtimer = 0
 		if self.can_swim then
 			self.swimtimer = 2 -- ensure we get the first step
@@ -168,11 +168,10 @@ local function translate_def(def)
 
 		-- Other things
 
-
 		if staticdata then
 			local tab = core.deserialize(staticdata)
 			if tab and type(tab) == "table" then
-				for s,w in pairs(tab) do
+				for s, w in pairs(tab) do
 					self[tostring(s)] = w
 				end
 			end
@@ -200,8 +199,8 @@ local function translate_def(def)
 			self.hostile = false
 		end
 
-		-- immortal is needed to disable clientside smokepuff shit
-		self.object:set_armor_groups({fleshy = 100, immortal = 1})
+		-- immortal is needed to disable clientside smokepuff
+		self.object:set_armor_groups({fleshy=100, immortal=1})
 
 		-- call custom on_activate if defined
 		if def.on_activate then
@@ -350,11 +349,12 @@ end
 --  @table ModelDef
 --  @tfield string mesh Mesh name (see Minetest Documentation for supported filetypes).
 --  @tfield table textures Table of textures (see Minetest Documentation).
---  @tfield NodeBox collisionbox Defines mesh collision box (see Minetest Documentation).
+--  @tfield[opt] NodeBox collisionbox Defines mesh collision box (see Minetest Documentation).
 --  @tfield[opt] table scale Sets visual scale (default: {x=1, y=1}).
 --  @tfield[opt] float rotation Sets rotation offset when moving (default: 0.0).
 --  @tfield[opt] bool backface_culling Set to `true` to enable backface culling.
 --  @tfield[opt] table animations Table of `AnimationDef` used if defined.
+--  @tfield[opt] bool collide_with_objects Collide with other objects (default: `true`).
 
 --- Animations defiintion table.
 --
@@ -493,9 +493,7 @@ end
 --  @param self
 --  @param staticdata
 
---- Called when mob is punched.
---
---  Must return a table to save mob data (serialization is done by MOB-Engine).
+--- Must return a table to save mob data (serialization is done by MOB-Engine).
 --  e.g:
 --  ```
 --    return {
