@@ -217,6 +217,14 @@ local function translate_def(def)
 		cmer.on_punch(self, puncher, time_from_last_punch, tool_capabilities, dir)
 	end
 
+	new_def.on_death = function(self, killer)
+		if def.on_death and def.on_death(self, killer) == true then
+			return
+		end
+
+		cmer.on_death(self, killer)
+	end
+
 	new_def.on_rightclick = function(self, clicker)
 		if def.on_rightclick and def.on_rightclick(self, clicker) == true then
 			return
@@ -463,6 +471,12 @@ end
 --  @param self
 --  @param puncher Can be `nil`.
 --  @treturn bool Prevents default action when returns `true`.
+
+--- Called when mob dies.
+--
+--  @function CreatureDef.on_death
+--  @param self
+--  @tparam[opt] ObjectRef killer
 
 --- Called each server step.
 --

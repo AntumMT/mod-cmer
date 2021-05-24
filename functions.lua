@@ -294,6 +294,9 @@ cmer.on_punch = function(self, puncher, time_from_last_punch, tool_capabilities,
 	end
 end
 
+cmer.on_death = function(self, killer)
+end
+
 cmer.on_rightclick = function(self, clicker)
 end
 
