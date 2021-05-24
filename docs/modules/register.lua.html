@@ -121,24 +121,28 @@
 <h2><a href="#Callbacks">Callbacks </a></h2>
 <table class="function_list">
 	<tr>
+	<td class="name" nowrap><a href="#CreatureDef.on_activate">CreatureDef.on_activate (self, staticdata, dtime_s)</a></td>
+	<td class="summary">Called when mob (re-)activated.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#CreatureDef.on_step">CreatureDef.on_step (self, dtime)</a></td>
+	<td class="summary">Called each server step, after movement and collision processing.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#CreatureDef.on_punch">CreatureDef.on_punch (self, puncher, time_from_last_punch, tool_capabilities, dir, damage)</a></td>
+	<td class="summary">Called when mob is punched.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#CreatureDef.on_rightclick">CreatureDef.on_rightclick (self, clicker)</a></td>
 	<td class="summary">Called when mob is right-clicked.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#CreatureDef.on_punch">CreatureDef.on_punch (self, puncher)</a></td>
-	<td class="summary">Called when mob is punched.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#CreatureDef.on_step">CreatureDef.on_step (self, dtime)</a></td>
-	<td class="summary">Called each server step.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#CreatureDef.on_activate">CreatureDef.on_activate (self, staticdata)</a></td>
-	<td class="summary">Called when mob (re-)activated.</td>
+	<td class="name" nowrap><a href="#CreatureDef.on_death">CreatureDef.on_death (self, killer)</a></td>
+	<td class="summary">Called when mob dies.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#CreatureDef.get_staticdata">CreatureDef.get_staticdata (self)</a></td>
-	<td class="summary">Called when mob is punched.</td>
+	<td class="summary">Must return a table to save mob data (serialization is done by MOB-Engine).</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#cmer.register_alias">cmer.register_alias (old_mob, new_mob)</a></td>
@@ -324,7 +328,7 @@
          Deals damage if falling more than 3 blocks (default: <code>false</code>).
          (<em>optional</em>)
         </li>
-        <li><span class="parameter">has_kockback</span>
+        <li><span class="parameter">has_knockback</span>
             <span class="types"><span class="type">bool</span></span>
          Get knocked back when hit (default: <code>false</code>).
          (<em>optional</em>)
@@ -436,6 +440,7 @@
         <li><span class="parameter">collisionbox</span>
             <span class="types"><span class="type">NodeBox</span></span>
          Defines mesh collision box (see Minetest Documentation).
+         (<em>optional</em>)
         </li>
         <li><span class="parameter">scale</span>
             <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.6">table</a></span>
@@ -455,6 +460,11 @@
         <li><span class="parameter">animations</span>
             <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.6">table</a></span>
          Table of <a href="../modules/register.lua.html#AnimationDef">AnimationDef</a> used if defined.
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">collide_with_objects</span>
+            <span class="types"><span class="type">bool</span></span>
+         Collide with other objects (default: <code>true</code>).
          (<em>optional</em>)
         </li>
     </ul>
@@ -805,11 +815,13 @@
 
     <dl class="function">
     <dt>
-    <a name = "CreatureDef.on_rightclick"></a>
-    <strong>CreatureDef.on_rightclick (self, clicker)</strong>
+    <a name = "CreatureDef.on_activate"></a>
+    <strong>CreatureDef.on_activate (self, staticdata, dtime_s)</strong>
     </dt>
     <dd>
-    Called when mob is right-clicked.
+    Called when mob (re-)activated. </p>
+
+<p>  Note: staticdata is deserialized by MOB-Engine (including custom values).
 
 
     <h3>Parameters:</h3>
@@ -819,10 +831,39 @@
 
 
         </li>
-        <li><span class="parameter">clicker</span>
+        <li><span class="parameter">staticdata</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         Formatted string data to be deserialized.
+        </li>
+        <li><span class="parameter">dtime_s</span>
+            <span class="types"><span class="type">int</span></span>
+         The time passed since the object was unloaded, which can be used for updating the entity state.
+        </li>
+    </ul>
 
 
 
+
+
+</dd>
+    <dt>
+    <a name = "CreatureDef.on_step"></a>
+    <strong>CreatureDef.on_step (self, dtime)</strong>
+    </dt>
+    <dd>
+    Called each server step, after movement and collision processing.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">self</span>
+
+
+
+        </li>
+        <li><span class="parameter">dtime</span>
+            <span class="types"><span class="type">float</span></span>
+         Usually 0.1 seconds, as per the <code>dedicated_server_step</code> setting in <code>minetest.conf</code>.
         </li>
     </ul>
 
@@ -839,7 +880,7 @@
 </dd>
     <dt>
     <a name = "CreatureDef.on_punch"></a>
-    <strong>CreatureDef.on_punch (self, puncher)</strong>
+    <strong>CreatureDef.on_punch (self, puncher, time_from_last_punch, tool_capabilities, dir, damage)</strong>
     </dt>
     <dd>
     Called when mob is punched.
@@ -853,7 +894,24 @@
 
         </li>
         <li><span class="parameter">puncher</span>
-         Can be <code>nil</code>.
+            <span class="types"><span class="type">ObjectRef</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">time_from_last_punch</span>
+         Meant for disallowing spamming of clicks.
+        </li>
+        <li><span class="parameter">tool_capabilities</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.6">table</a></span>
+         See: http://minetest.gitlab.io/minetest/tools.html
+        </li>
+        <li><span class="parameter">dir</span>
+         Unit vector of direction of punch. Always defined. Points from the puncher to the punched.
+        </li>
+        <li><span class="parameter">damage</span>
+            <span class="types"><span class="type">int</span></span>
+         Damage that will be done to entity.
         </li>
     </ul>
 
@@ -869,11 +927,11 @@
 
 </dd>
     <dt>
-    <a name = "CreatureDef.on_step"></a>
-    <strong>CreatureDef.on_step (self, dtime)</strong>
+    <a name = "CreatureDef.on_rightclick"></a>
+    <strong>CreatureDef.on_rightclick (self, clicker)</strong>
     </dt>
     <dd>
-    Called each server step.
+    Called when mob is right-clicked.
 
 
     <h3>Parameters:</h3>
@@ -883,10 +941,9 @@
 
 
         </li>
-        <li><span class="parameter">dtime</span>
-
-
-
+        <li><span class="parameter">clicker</span>
+            <span class="types"><span class="type">ObjectRef</span></span>
+         Entity that did the punching.
         </li>
     </ul>
 
@@ -902,13 +959,11 @@
 
 </dd>
     <dt>
-    <a name = "CreatureDef.on_activate"></a>
-    <strong>CreatureDef.on_activate (self, staticdata)</strong>
+    <a name = "CreatureDef.on_death"></a>
+    <strong>CreatureDef.on_death (self, killer)</strong>
     </dt>
     <dd>
-    Called when mob (re-)activated. </p>
-
-<p>  Note: staticdata is deserialized by MOB-Engine (including costum values).
+    Called when mob dies.
 
 
     <h3>Parameters:</h3>
@@ -918,10 +973,9 @@
 
 
         </li>
-        <li><span class="parameter">staticdata</span>
-
-
-
+        <li><span class="parameter">killer</span>
+            <span class="types"><span class="type">ObjectRef</span></span>
+         (can be <code>nil</code>)
         </li>
     </ul>
 
@@ -935,9 +989,7 @@
     <strong>CreatureDef.get_staticdata (self)</strong>
     </dt>
     <dd>
-    Called when mob is punched. </p>
-
-<p>  Must return a table to save mob data (serialization is done by MOB-Engine).
+    Must return a table to save mob data (serialization is done by MOB-Engine).
   e.g:
   ``<code></p>
 <pre><code>return {
@@ -1007,7 +1059,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2021-05-20 00:08:15 </i>
+<i style="float:right;">Last updated 2021-05-23 23:34:19 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
