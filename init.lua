@@ -38,7 +38,7 @@ end
 local function dropEgg(obj)
   local pos = obj:get_pos()
   if pos then
-    cmer.dropItems(pos, {{"creatures:egg"}})
+    creatures.dropItems(pos, {{"creatures:egg"}})
   end
 end
 
@@ -149,7 +149,7 @@ local def = {
 
   on_activate = function(self, staticdata)
     if not self.feather_color then
-      self.feather_color = cmer.rnd(colors) or "white"
+      self.feather_color = creatures.rnd(colors) or "white"
     end
     -- update feather color
     self.object:set_properties({textures = {"creatures_chicken_" .. self.feather_color .. ".png"}})
@@ -163,4 +163,4 @@ local def = {
   end
 }
 
-cmer.register_mob(def)
+creatures.register_mob(def)
