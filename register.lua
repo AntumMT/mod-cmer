@@ -24,6 +24,21 @@
 --  @module register.lua
 
 
+local function translate_name(name)
+	-- DEBUG:
+	print("\nName: " .. tostring(name))
+
+	if name:find(":") == 1 then
+		name = name:sub(2)
+	end
+
+	-- DEBUG:
+	print("Translated name: " .. tostring(name))
+
+	return name
+end
+
+
 local function translate_def(def)
 	local new_def = {
 		physical = true,
@@ -121,7 +136,7 @@ local function translate_def(def)
 	new_def.on_activate = function(self, staticdata, dtime_s)
 
 		-- Add everything we need as basis for the engine
-		self.mob_name = def.name
+		self.mob_name = translate_name(def.name)
 		self.hp = def.stats.hp
 		self.hostile = def.stats.hostile
 		self.mode = ""
@@ -274,7 +289,7 @@ function cmer.register_mob(def) -- returns true if sucessfull
 
 	local mob_def = translate_def(def)
 
-	core.register_entity(":" .. def.name, mob_def)
+	core.register_entity(def.name, mob_def)
 
 	-- register spawn
 	if def.spawning and not (def.stats.hostile and not cmer.allow_hostile) then
@@ -683,6 +698,8 @@ end
 
 
 local function makeSpawnerEntiy(mob_name, model)
+	local t_name = translate_name(mob_name)
+
 	core.register_entity(mob_name .. "_spawner_dummy", {
 		hp_max = 1,
 		physical = false,
@@ -694,7 +711,7 @@ local function makeSpawnerEntiy(mob_name, model)
 		textures = model.textures,
 		makes_footstep_sound = false,
 		automatic_rotate = math.pi * -2.9,
-		mob_name = "_" .. mob_name .. "_dummy",
+		mob_name = "_" .. t_name .. "_dummy",
 
 		on_activate = function(self)
 			self.timer = 0
@@ -709,7 +726,7 @@ local function makeSpawnerEntiy(mob_name, model)
 			 if self.timer > 30 then
 				 self.timer = 0
 				 local n = core.get_node_or_nil(self.object:get_pos())
-				 if n and n.name and n.name ~= mob_name .. "_spawner" then
+				 if n and n.name and n.name ~= t_name .. "_spawner" then
 					 self.object:remove()
 				 end
 			 end
@@ -762,7 +779,7 @@ function cmer.register_spawner(spawner_def)
 
 	makeSpawnerEntiy(spawner_def.mob_name, spawner_def.model)
 
-	core.register_node(":" .. spawner_def.mob_name .. "_spawner", {
+	core.register_node(spawner_def.mob_name .. "_spawner", {
 		description = spawner_def.description or spawner_def.mob_name .. " spawner",
 		paramtype = "light",
 		tiles = {"creatures_spawner.png"},
