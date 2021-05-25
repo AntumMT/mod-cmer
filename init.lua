@@ -108,7 +108,7 @@ local def = {
 
 }
 
-cmer.register_mob(def)
+creatures.register_mob(def)
 
 if core.global_exists("asm") then
 	asm.addEgg({
