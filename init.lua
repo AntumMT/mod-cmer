@@ -20,6 +20,13 @@
 --
 
 
+cmer_zombie = {}
+modname = core.get_current_modname()
+modpath = core.get_modpath(modname)
+
+dofile(modpath .. "/settings.lua")
+
+
 core.register_craftitem(":creatures:rotten_flesh", {
 	description = "Rotten Flesh",
 	inventory_image = "creatures_rotten_flesh.png",
@@ -32,7 +39,7 @@ local def = {
 	nametag = creatures.feature_nametags and "Zombie" or nil,
 	stats = {
 		hp = 20,
-		lifetime = 300, -- 5 Minutes
+		lifetime = cmer_zombie.lifetime,
 		can_jump = 1,
 		can_swim = true,
 		can_burn = true,
@@ -87,8 +94,8 @@ local def = {
 			spawn_on = {"default:stone", "default:dirt_with_grass", "default:dirt",
 				"default:cobblestone", "default:mossycobble", "group:sand"},
 		},
-		abm_interval = 36,
-		abm_chance = 7600,
+		abm_interval = cmer_zombie.spawn_interval,
+		abm_chance = cmer_zombie.spawn_chance,
 		max_number = 1,
 		number = 2,
 		light = {min = 0, max = 8},
