@@ -75,7 +75,7 @@ local colors = {
 
 local def = {
   -- general
-  name = "creatures:chicken",
+  name = ":creatures:chicken",
 	ownable = true,
   stats = {
     hp = 5,
