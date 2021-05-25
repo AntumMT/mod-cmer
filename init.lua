@@ -22,6 +22,7 @@
 
 local def = {
 	name = ":creatures:oerkki",
+	nametag = creatures.feature_nametags and "Oerkki" or nil,
 	stats = {
 		hp = 13,
 		lifetime = 540, -- 9 Minutes
