@@ -15,6 +15,8 @@ of each mob. This engine aims to be a solid base, that has a good balance betwee
 performance and functionality.
 See API.txt for more informations on how to use this engine for mobs.
 
+![screenshot](screenshot.png)
+
 ---
 ### Licensing:
 
