@@ -28,7 +28,7 @@ dofile(cmer_ghost.modpath .. "/settings.lua")
 
 local def = {
   -- general
-  name = "creatures:ghost",
+  name = ":creatures:ghost",
   stats = {
     hp = 12,
     lifetime = cmer_ghost.lifetime,
