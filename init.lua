@@ -29,6 +29,7 @@ core.register_craftitem(":creatures:rotten_flesh", {
 local def = {
   -- general
   name = ":creatures:zombie",
+  nametag = creatures.feature_nametags and "Zombie" or nil,
   stats = {
     hp = 20,
     lifetime = 300, -- 5 Minutes
