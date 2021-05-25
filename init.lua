@@ -102,10 +102,10 @@ local def = {
   },
 }
 
-cmer.register_mob(def)
+creatures.register_mob(def)
 
 -- Convert "Oerrki's" (caused by typo)
-cmer.register_alias("creatures:oerrki", "creatures:oerkki")
+creatures.register_alias("creatures:oerrki", "creatures:oerkki")
 
 if core.global_exists("asm") then
 	asm.addEgg({
