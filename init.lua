@@ -28,7 +28,7 @@ core.register_craftitem(":creatures:rotten_flesh", {
 
 local def = {
   -- general
-  name = "creatures:zombie",
+  name = ":creatures:zombie",
   stats = {
     hp = 20,
     lifetime = 300, -- 5 Minutes
