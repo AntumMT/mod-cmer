@@ -47,7 +47,7 @@ local function translate_def(def)
 		modes = {},
 		drops = def.drops,
 
-		nametag = def.nametag,
+		nametag = cmer.enable_nametags and def.nametag or nil,
 	}
 
 	-- Tanslate modes to better accessable format
@@ -208,7 +208,7 @@ local function translate_def(def)
 		-- immortal is needed to disable clientside smokepuff
 		self.object:set_armor_groups({fleshy=100, immortal=1})
 
-		if cmer.enable_nametags and self.nametag then
+		if self.nametag then
 			local nt_attrib = self.object:get_nametag_attributes()
 			if self.hostile then
 				nt_attrib.color = {a=255, r=255, g=0, b=0}
