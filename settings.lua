@@ -44,3 +44,10 @@ cmer.creative = core.settings:get_bool("creative_mode", false)
 --  @settype bool
 --  @default false
 cmer.enable_nametags = core.settings:get_bool("enable_mob_nametags", false)
+
+--- Determines if owned entities can be killed by non-owners.
+--
+--  @setting mobs_griefing
+--  @settype bool
+--  @default false
+cmer.griefing = core.settings:get_bool("mobs_griefing", false)
