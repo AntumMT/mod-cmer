@@ -25,15 +25,9 @@
 
 
 local function translate_name(name)
-	-- DEBUG:
-	print("\nName: " .. tostring(name))
-
 	if name:find(":") == 1 then
 		name = name:sub(2)
 	end
-
-	-- DEBUG:
-	print("Translated name: " .. tostring(name))
 
 	return name
 end
