@@ -8,6 +8,7 @@ boilerplate = true
 file = {"register.lua", "common.lua"}
 
 new_type("setting", "Settings")
+new_type("feature", "Features")
 
 custom_tags = {
 	{

@@ -20,9 +20,7 @@
 --
 
 
-cmer = {
-	feature_nametags = true,
-}
+cmer = {}
 
 if not core.global_exists("creatures") then
 	-- backward compat
@@ -48,6 +46,7 @@ end
 
 
 local scripts = {
+	"features",
 	"settings",
 	"common",
 	"functions",
