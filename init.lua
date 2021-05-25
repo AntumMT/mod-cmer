@@ -21,7 +21,7 @@
 
 
 local def = {
-  name = "creatures:oerkki",
+  name = ":creatures:oerkki",
   stats = {
     hp = 13,
     lifetime = 540, -- 9 Minutes
