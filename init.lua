@@ -20,7 +20,9 @@
 --
 
 
-cmer = {}
+cmer = {
+	feature_nametags = true,
+}
 
 if not core.global_exists("creatures") then
 	-- backward compat

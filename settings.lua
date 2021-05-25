@@ -37,3 +37,10 @@ cmer.enable_damage = core.settings:get_bool("enable_damage", false)
 --  @settype bool
 --  @default false
 cmer.creative = core.settings:get_bool("creative_mode", false)
+
+--- Displays nametags above mobs.
+--
+--  @setting enable_mob_nametags
+--  @settype bool
+--  @default false
+cmer.enable_nametags = core.settings:get_bool("enable_mob_nametags", false)

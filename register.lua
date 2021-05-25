@@ -46,6 +46,8 @@ local function translate_def(def)
 		combat = def.combat,
 		modes = {},
 		drops = def.drops,
+
+		nametag = def.nametag,
 	}
 
 	-- Tanslate modes to better accessable format
@@ -206,6 +208,17 @@ local function translate_def(def)
 		-- immortal is needed to disable clientside smokepuff
 		self.object:set_armor_groups({fleshy=100, immortal=1})
 
+		if cmer.enable_nametags and self.nametag then
+			local nt_attrib = self.object:get_nametag_attributes()
+			if self.hostile then
+				nt_attrib.color = {a=255, r=255, g=0, b=0}
+			else
+				nt_attrib.color = {a=255, r=0, g=255, b=0}
+			end
+
+			self.object:set_nametag_attributes(nt_attrib)
+		end
+
 		-- call custom on_activate if defined
 		if def.on_activate then
 			def.on_activate(self, staticdata, dtime_s)
@@ -289,7 +302,8 @@ end
 --
 --  @table CreatureDef
 --  @tfield string name E.g. "creatures:sheep".
---  @tfield bool ownable Flag for defining if entity is ownable by players (default: *false*).
+--  @tfield[opt] string nametag String to be displayed in entity's nametag.
+--  @tfield[opt] bool ownable Flag for defining if entity is ownable by players (default: *false*).
 --  @tfield StatsDef stats Stats definitions.
 --  @tfield ModeDef modes Entity bahavior defintions.
 --  @tfield ModelDef model Model definitions.

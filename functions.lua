@@ -182,6 +182,7 @@ local function onDamage(self, hp, hitsound)
 
 	if hp <= 0 then
 		self.stunned = true
+			self:on_death()
 			killMob(me, def)
 	else
 		on_hit(me) -- red flashing
@@ -304,6 +305,10 @@ cmer.on_punch = function(self, puncher, tflp, tc, dir)
 end
 
 cmer.on_death = function(self, killer)
+	if self.object:get_nametag_attributes().text then
+		-- clear nametag
+		self.object:set_nametag_attributes({text=nil})
+	end
 end
 
 cmer.on_rightclick = function(self, clicker)
@@ -714,6 +719,7 @@ end
 
 cmer.get_staticdata = function(self)
 	return {
+		nametag = self.nametag,
 		hp = self.object:get_hp(),
 		mode = self.mode,
 		tamed = self.tamed,
