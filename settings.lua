@@ -40,10 +40,10 @@ cmer.creative = core.settings:get_bool("creative_mode", false)
 
 --- Displays nametags above mobs.
 --
---  @setting enable_mob_nametags
+--  @setting mobs_nametags
 --  @settype bool
 --  @default false
-cmer.enable_nametags = core.settings:get_bool("enable_mob_nametags", false)
+cmer.nametags = core.settings:get_bool("mobs_nametags", false)
 
 --- Determines if owned entities can be killed by non-owners.
 --

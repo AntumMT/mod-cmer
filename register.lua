@@ -48,7 +48,7 @@ local function translate_def(def)
 		collide_with_objects = def.model.collide_with_objects or true,
 		makes_footstep_sound = true,
 
-		nametag = cmer.enable_nametags and def.nametag or nil,
+		nametag = cmer.nametags and def.nametag or nil,
 		ownable = def.ownable,
 
 		stats = def.stats,
