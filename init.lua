@@ -36,7 +36,7 @@ function cmer.log(lvl, msg)
 		lvl = nil
 	end
 
-	msg = "[" .. cmer.modname .. "] " msg
+	msg = "[" .. cmer.modname .. "] " .. msg
 	if not lvl then
 		core.log(msg)
 	else

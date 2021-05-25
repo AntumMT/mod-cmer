@@ -127,7 +127,7 @@ local function translate_def(def)
 
 		if def.stats.has_kockback or def.stats.has_kockback == false then
 			cmer.log("warning",
-				core.get_current_modname()
+				def.name
 				.. ": \"def.stats.has_kockback\" is deprecated, please use \"def.stats.has_knockback\"")
 		end
 
