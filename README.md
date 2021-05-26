@@ -31,7 +31,7 @@ See API.txt for more informations on how to use this engine for mobs.
 - [Forum](https://forum.minetest.net/viewtopic.php?t=26684)
 - [Git repo](https://github.com/AntumMT/mod-cmer)
 - [API](https://antummt.github.io/mod-cmer/docs/api.html)
-- [Changelog](CHANGES.txt)
+- [Changelog](changelog.txt)
 - [TODO](TODO.txt)
 - Original Creatures MOB-Engine by BlockMen:
 	- [Forum](https://forum.minetest.net/viewtopic.php?t=8638)
