@@ -100,6 +100,7 @@ if core.global_exists("asm") then
 		ingredient = "creatures:rotten_flesh",
 	})
 end
+core.register_alias("creatures:zombie", "spawneggs:zombie")
 
 
 -- harder zombie
