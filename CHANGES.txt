@@ -13,6 +13,7 @@ revived-1.1
 - option to set nametag
 - griefing is disabled unless 'mobs_griefing' setting enabled
 - owned entities can be picked up with mobs:lasso
+- owned entities cannot be killed by other players
 
 
 revived-1.0
