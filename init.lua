@@ -28,6 +28,7 @@ local scripts = {
 	"settings",
 	"item",
 	"entity",
+	"spawn",
 }
 
 for _, script in ipairs(scripts) do
