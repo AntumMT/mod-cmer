@@ -370,7 +370,10 @@ function cmer.register_spawn(spawn_def)
 	if not spawn_def.abm_nodes.neighbors then
 		spawn_def.abm_nodes.neighbors = {}
 	end
-	table.insert(spawn_def.abm_nodes.neighbors, "air")
+	if #spawn_def.abm_nodes.neighbors == 0 then
+		-- only add "air" if neighbors empty
+		table.insert(spawn_def.abm_nodes.neighbors, "air")
+	end
 
 	core.register_abm({
 		nodenames = spawn_def.abm_nodes.spawn_on,
