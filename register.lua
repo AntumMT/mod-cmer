@@ -136,7 +136,7 @@ local function translate_def(def)
 		self.mode = ""
 		self.stunned = false -- if knocked back or hit do nothing else
 
-		if def.stats.has_kockback or def.stats.has_kockback == false then
+		if def.stats.has_kockback ~= nil then
 			cmer.log("warning",
 				def.name
 				.. ": \"def.stats.has_kockback\" is deprecated, please use \"def.stats.has_knockback\"")
