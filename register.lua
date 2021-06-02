@@ -353,6 +353,8 @@ local function groupSpawn(pos, mob, group, nodes, range, max_loops)
 	if cnt < group then
 		return false
 	end
+
+	return true
 end
 
 function cmer.register_spawn(spawn_def)
