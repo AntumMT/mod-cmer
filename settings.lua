@@ -6,6 +6,9 @@
 --  @module settings.lua
 
 
+cmer.debug = core.settings:get_bool("enable_debug_mods", false)
+
+
 --- Disables attacking players.
 --
 --  @setting only_peaceful_mobs
