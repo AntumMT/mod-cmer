@@ -347,7 +347,11 @@ local function groupSpawn(pos, mob, group, nodes, range, max_loops)
 		p.y = p.y + 1
 		if checkSpace(p, mob.size) == true then
 			cnt = cnt + 1
-			core.add_entity(p, mob.name)
+			if not core.add_entity(p, mob.name) then
+				cmer.log("error", "could not spawn entity: " .. tostring(mob.name))
+			elseif cmer.debug then
+				print("Spawned entity: " .. tostring(mob.name) .. " number " .. tostring(cnt))
+			end
 		end
 	end
 	if cnt < group then
@@ -371,6 +375,12 @@ function cmer.register_spawn(spawn_def)
 		table.insert(spawn_def.abm_nodes.neighbors, "air")
 	end
 
+	local mob_name = translate_name(spawn_def.mob_name)
+
+	if cmer.debug then
+		print("\nregistering spawn for: " .. tostring(mob_name))
+	end
+
 	core.register_abm({
 		nodenames = spawn_def.abm_nodes.spawn_on,
 		neighbors = spawn_def.abm_nodes.neighbors,
@@ -382,8 +392,6 @@ function cmer.register_spawn(spawn_def)
 			if stopABMFlood() == true then
 				return
 			end
-
-			local mob_name = translate_name(spawn_def.mob_name)
 
 			if cmer.debug then
 				print("ABM reached: " .. tostring(mob_name))
