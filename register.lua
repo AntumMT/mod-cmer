@@ -825,8 +825,8 @@ end
 --
 --  @table SpawnDef
 --  @tfield ABMNodesDef abm_nodes On what nodes mob can spawn.
---  @tfield int abm_interval Time in seconds until Minetest tries to find a node with set specs.
---  @tfield int abm_chance Chance is 1/<chance>.
+--  @tfield[opt] int abm_interval Time in seconds until Minetest tries to find a node with set specs (default: 44).
+--  @tfield[opt] int abm_chance Chance is 1/&lt;chance&gt; (default: 7000).
 --  @tfield int max_number Maximum mobs of this kind per mapblock (16x16x16).
 --  @tfield int number How many mobs are spawned if found suitable spawn position. Can be `int` or `table`: number = {min=&lt;value&gt;, max=&lt;value&gt;}
 --  @tfield[opt] table time_range Time range in time of day format (0-24000) (table with *min* & *max* values).
@@ -838,7 +838,7 @@ end
 --
 --  @table ABMNodesDef
 --  @tfield[opt] table spawn_on List of nodes on which the mob can spawn.
---  @tfield table neighbors List of nodes that should be neighbors where mob can spawn. Can be nil or table as above. "air" is forced always as neighbor.
+--  @tfield[opt] table neighbors List of nodes that should be neighbors where mob can spawn. Can be nil or table as above (default: {"air"}).
 
 --- Spawner definition table.
 --
