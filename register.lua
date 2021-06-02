@@ -24,13 +24,7 @@
 --  @module register.lua
 
 
-local function translate_name(name)
-	if name:find(":") == 1 then
-		name = name:sub(2)
-	end
-
-	return name
-end
+local translate_name = dofile(cmer.modpath .. "/misc_functions.lua")
 
 
 local function translate_def(def)
@@ -387,6 +381,12 @@ function cmer.register_spawn(spawn_def)
 				return
 			end
 
+			local mob_name = translate_name(spawn_def.mob_name)
+
+			if cmer.debug then
+				print("ABM reached: " .. tostring(mob_name))
+			end
+
 			-- time check
 			local tod = core.get_timeofday() * 24000
 			if spawn_def.time_range then
@@ -411,8 +411,6 @@ function cmer.register_spawn(spawn_def)
 			if spawn_def.light and not inRange(spawn_def.light, llvl) then
 				return
 			end
-
-			local mob_name translate_name(spawn_def.mob_name)
 
 			-- creature count check
 			local max
@@ -447,7 +445,11 @@ function cmer.register_spawn(spawn_def)
 				if not checkSpace(pos, height_min) then
 					return
 				end
-				core.add_entity(pos, mob_name)
+				if not core.add_entity(pos, mob_name) then
+					cmer.log("error", "could not spawn entity: " .. tostring(mob_name))
+				elseif cmer.debug then
+					print("Spawned entity: " .. tostring(mob_name))
+				end
 			end
 		end,
 	})
