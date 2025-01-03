@@ -2,6 +2,7 @@
 v1.2-cmer
 ---------
 - fixed nil error when clearing entity's nametag on death
+- uses node groups to determine swimming & burning instead of depending on `default`
 
 v1.1-cmer
 ---------
