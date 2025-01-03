@@ -321,7 +321,11 @@ cmer.on_punch = function(self, puncher, tflp, tc, dir)
 end
 
 cmer.on_death = function(self, killer)
-	if self.object:get_nametag_attributes().text then
+	local attributes = self.object:get_nametag_attributes()
+	if attributes == nil then
+		return
+	end
+	if attributes.text ~= nil then
 		-- clear nametag
 		self.object:set_nametag_attributes({text=nil})
 	end
