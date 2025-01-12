@@ -124,9 +124,6 @@ local function killMob(me, def)
 	local pos = me:get_pos()
 	me:set_velocity(nullVec)
 	me:set_properties({collisionbox=nullVec})
-	me:set_hp(0)
-	-- Must be non-zero otherwise mob is removed before death animation.
-	me:set_hp(1)
 
 	if def.sounds and def.sounds.on_death then
 		local death_snd = def.sounds.on_death
@@ -137,6 +134,14 @@ local function killMob(me, def)
 			})
 	end
 
+	if def.drops then
+		if type(def.drops) == "function" then
+			def.drops(me)
+		else
+			dropItems(pos, def.drops)
+		end
+	end
+
 	if def.model.animations.death then
 		local dur = def.model.animations.death.duration or 0.5
 		update_animation(me, "death", def.model.animations["death"])
@@ -145,13 +150,6 @@ local function killMob(me, def)
 		end)
 	else
 		me:remove()
-	end
-	if def.drops then
-		if type(def.drops) == "function" then
-			def.drops(me)
-		else
-			dropItems(pos, def.drops)
-		end
 	end
 end
 
@@ -184,8 +182,8 @@ local function onDamage(self, hp, hitsound)
 
 	if hp <= 0 then
 		self.stunned = true
-			self:on_death()
 			killMob(me, def)
+			self:on_death()
 	else
 		on_hit(me) -- red flashing
 		if def.sounds then
@@ -209,10 +207,10 @@ local function changeHP(self, value, hitsound)
 	local me = self.object
 	local hp = me:get_hp()
 	hp = hp + math.floor(value)
-	me:set_hp(hp)
 	if value < 0 then
 		onDamage(self, hp, hitsound)
 	end
+	me:set_hp(hp)
 end
 
 local function checkWielded(wielded, itemList)
