@@ -148,7 +148,7 @@ local function killMob(me, def)
 	end
 	if def.drops then
 		if type(def.drops) == "function" then
-			def.drops(me:get_luaentity())
+			def.drops(me)
 		else
 			dropItems(pos, def.drops)
 		end
