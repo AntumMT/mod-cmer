@@ -115,7 +115,8 @@ end
 
 local dropItems = cmer.dropItems
 
-local function killMob(me, def)
+local function killMob(self, def)
+	local me = self.object
 	if not def then
 		if me then
 			me:remove()
@@ -146,9 +147,13 @@ local function killMob(me, def)
 		local dur = def.model.animations.death.duration or 0.5
 		update_animation(me, "death", def.model.animations["death"])
 		core.after(dur, function()
+			self:on_death()
+			me:set_hp(hp)
 			me:remove()
 		end)
 	else
+		self:on_death()
+		me:set_hp(hp)
 		me:remove()
 	end
 end
@@ -182,8 +187,7 @@ local function onDamage(self, hp, hitsound)
 
 	if hp <= 0 then
 		self.stunned = true
-			killMob(me, def)
-			self:on_death()
+		killMob(self, def)
 	else
 		on_hit(me) -- red flashing
 		if def.sounds then
@@ -209,8 +213,9 @@ local function changeHP(self, value, hitsound)
 	hp = hp + math.floor(value)
 	if value < 0 then
 		onDamage(self, hp, hitsound)
+	else
+		me:set_hp(hp)
 	end
-	me:set_hp(hp)
 end
 
 local function checkWielded(wielded, itemList)
